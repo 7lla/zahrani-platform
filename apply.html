@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>منصة الزهراني للتوظيف</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <img src="https://res.cloudinary.com/dysxdaa2u/image/upload/v1754813649/bsxB90Z-removebg-preview-removebg-preview_thsohf.png" alt="شعار المنصة">
+    <h1>منصة الزهراني للتوظيف</h1>
+  </header>
+  <main class="container">
+    <div class="card form" id="applyForm">
+      <h3>تقديم طلب وظيفة</h3>
+      
+      <div class="row">
+        <div class="col form-group">
+          <label for="fullname">الاسم الكامل</label>
+          <div class="form-icon">
+            <i class="fas fa-user"></i>
+          </div>
+          <input id="fullname" type="text" class="form-control" placeholder="أدخل الاسم الكامل">
+        </div>
+        
+        <div class="col form-group">
+          <label for="iqama">رقم الإقامة</label>
+          <div class="form-icon">
+            <i class="fas fa-id-card"></i>
+          </div>
+          <input id="iqama" type="text" class="form-control" placeholder="أدخل رقم الإقامة">
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col form-group">
+          <label for="phone">رقم الجوال</label>
+          <div class="form-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <input id="phone" type="tel" class="form-control" placeholder="أدخل رقم الجوال">
+        </div>
+        
+        <div class="col form-group">
+          <label for="jobSelect">اختر الوظيفة</label>
+          <div class="form-icon">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <select id="jobSelect" class="form-control">
+            <option value="">-- بدون اختيار --</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label>صورة الإقامة</label>
+        <label class="file-upload">
+          <input id="iqamaImage" type="file" accept="image/*" class="file-upload-input">
+          <span class="file-upload-label">
+            <i class="fas fa-cloud-upload-alt file-upload-icon"></i>
+            <span id="iqamaFileName">اختر ملف</span>
+          </span>
+        </label>
+      </div>
+      
+      <div class="form-group">
+        <label>رخصة القيادة</label>
+        <label class="file-upload">
+          <input id="licenseImage" type="file" accept="image/*" class="file-upload-input">
+          <span class="file-upload-label">
+            <i class="fas fa-cloud-upload-alt file-upload-icon"></i>
+            <span id="licenseFileName">اختر ملف</span>
+          </span>
+        </label>
+      </div>
+      
+      <div class="form-group">
+        <label>صورة شخصية</label>
+        <label class="file-upload">
+          <input id="profileImage" type="file" accept="image/*" class="file-upload-input">
+          <span class="file-upload-label">
+            <i class="fas fa-cloud-upload-alt file-upload-icon"></i>
+            <span id="profileFileName">اختر ملف</span>
+          </span>
+        </label>
+      </div>
+      
+      <div style="display:flex; gap:1rem;">
+        <button id="submitBtn" class="btn btn-primary">
+          <i class="fas fa-paper-plane btn-icon"></i> إرسال الطلب
+        </button>
+        <button id="resetBtn" class="btn btn-secondary" type="button">
+          <i class="fas fa-redo btn-icon"></i> إعادة تعبئة
+        </button>
+      </div>
+      
+      <div id="msg"></div>
+    </div>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
