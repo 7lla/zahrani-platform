@@ -9,12 +9,12 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js';
 
 const firebaseConfig = {
-  apiKey: "AIzaSy...",
+  apiKey: "AIzaSyAyowWAzM5tpmNVxx_1XoxZpQIRSKkRExA",
   authDomain: "al-zahrani-platform.firebaseapp.com",
   projectId: "al-zahrani-platform",
-  storageBucket: "al-zahrani-platform.appspot.com",
-  messagingSenderId: "123...",
-  appId: "1:123..."
+  storageBucket: "al-zahrani-platform.firebasestorage.app",
+  messagingSenderId: "69640690245",
+  appId: "1:69640690245:web:580a8113c9a751771aa12c"
 };
 
 const app = initializeApp(firebaseConfig);
