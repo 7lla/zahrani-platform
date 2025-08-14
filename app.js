@@ -1,13 +1,4 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
-import { 
-  getFirestore, 
-  collection, 
-  addDoc, 
-  query, 
-  where,
-  getDocs
-} from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js';
-
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAyowWAzM5tpmNVxx_1XoxZpQIRSKkRExA",
   authDomain: "al-zahrani-platform.firebaseapp.com",
@@ -17,65 +8,79 @@ const firebaseConfig = {
   appId: "1:69640690245:web:580a8113c9a751771aa12c"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-// عناصر DOM
-const form = document.getElementById('applyForm');
-const submitBtn = document.getElementById('submitBtn');
-const msgEl = document.getElementById('msg');
+// Cloudinary config
+const CLOUDINARY_UPLOAD_PRESET = "zahrani-platform";
+const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dysxdaa2u/image/upload";
 
-// إرسال النموذج
-form.addEventListener('submit', async (e) => {
+// رفع الصور إلى Cloudinary
+async function uploadImage(file) {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+
+  const res = await fetch(CLOUDINARY_URL, { method: "POST", body: formData });
+  const data = await res.json();
+  return data.secure_url;
+}
+
+// تقديم طلب وظيفة
+document.getElementById("jobForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
-  submitBtn.disabled = true;
-  msgEl.innerHTML = '<div class="alert info">جاري معالجة طلبك...</div>';
 
-  try {
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-    
-    // التحقق من البيانات
-    if (!data.fullname || !data.iqama || !data.phone) {
-      throw new Error('جميع الحقول الإلزامية مطلوبة');
-    }
-    
-    if (!/^\d{10}$/.test(data.phone)) {
-      throw new Error('رقم الجوال يجب أن يكون 10 أرقام');
-    }
-    
-    // التحقق من عدم تكرار رقم الإقامة
-    const q = query(collection(db, "applicants"), where("iqama", "==", data.iqama));
-    const snapshot = await getDocs(q);
-    
-    if (!snapshot.empty) {
-      throw new Error('رقم الإقامة مسجل مسبقاً');
-    }
-    
-    // هنا كود رفع الملفات إلى Cloudinary (إذا كنت تستخدمها)
-    
-    // حفظ البيانات في Firestore
-    await addDoc(collection(db, "applicants"), {
-      ...data,
-      createdAt: new Date().toISOString(),
-      status: "pending"
-    });
-    
-    showMessage('تم تقديم طلبك بنجاح', 'success');
-    form.reset();
-  } catch (error) {
-    showMessage(`حدث خطأ: ${error.message}`, 'error');
-    console.error("Submission error:", error);
-  } finally {
-    submitBtn.disabled = false;
+  const name = document.getElementById("name").value.trim();
+  const iqama = document.getElementById("iqama").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const iqamaFile = document.getElementById("iqamaFile").files[0];
+  const licenseFile = document.getElementById("licenseFile").files[0];
+  const photoFile = document.getElementById("photoFile").files[0];
+  const jobId = document.getElementById("jobId").value;
+
+  // تحقق من تكرار رقم الإقامة على مستوى جميع الوظائف
+  const querySnapshot = await db.collection("applications")
+    .where("iqama", "==", iqama)
+    .get();
+
+  if (!querySnapshot.empty) {
+    alert("رقم الإقامة مسجل بالفعل في النظام.");
+    return;
   }
+
+  // رفع الصور
+  const iqamaUrl = await uploadImage(iqamaFile);
+  const licenseUrl = await uploadImage(licenseFile);
+  const photoUrl = await uploadImage(photoFile);
+
+  // حفظ البيانات
+  await db.collection("applications").add({
+    name,
+    iqama,
+    phone,
+    iqamaUrl,
+    licenseUrl,
+    photoUrl,
+    jobId,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  });
+
+  alert("تم تقديم الطلب بنجاح!");
+  document.getElementById("jobForm").reset();
 });
 
-function showMessage(msg, type) {
-  msgEl.innerHTML = `
-    <div class="alert ${type}">
-      <i class="fas ${type === 'error' ? 'fa-exclamation-circle' : 'fa-check-circle'}></i>
-      ${msg}
-    </div>
-  `;
-}
+// تسجيل دخول المشرف
+document.getElementById("adminLoginForm")?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("adminEmail").value.trim();
+  const password = document.getElementById("adminPassword").value.trim();
+
+  try {
+    await firebase.auth().signInWithEmailAndPassword(email, password);
+    window.location.href = "admin.html";
+  } catch (error) {
+    alert("بيانات الدخول غير صحيحة");
+  }
+});
