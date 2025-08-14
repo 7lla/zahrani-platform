@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>لوحة المشرف - الزهراني</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة المشرف - منصة الزهراني</title>
+
+  <!-- خط Cairo -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="style.css" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 </head>
 <body>
-  <div class="login-container">
-    <div class="card">
-      <img src="logo.png" alt="شعار المنصة" class="logo">
-      <h2>تسجيل دخول المشرفين</h2>
-      <div id="authMsg" class="auth-message"></div>
-      
-      <div class="form-group">
-        <label>البريد الإلكتروني</label>
-        <input id="email" type="email" placeholder="admin@example.com">
-      </div>
-      
-      <div class="form-group">
-        <label>كلمة المرور</label>
-        <input id="pass" type="password" placeholder="********">
-      </div>
-      
-      <button id="loginBtn" class="btn-primary">دخول</button>
-      
-      <div class="temp-accounts">
-        <h4>حسابات مؤقتة للتجربة:</h4>
-        <p><strong>أبوبكر:</strong> abubakr@temp.com - 00</p>
-        <p><strong>أحمد:</strong> ahmed@temp.com - 000</p>
-        <p><strong>مازن:</strong> mazen@temp.com - 0000</p>
-      </div>
-    </div>
-  </div>
-  <script type="module" src="admin.js"></script>
+
+  <header class="header">
+    <h1>لوحة المشرف</h1>
+  </header>
+
+  <section class="admin-section">
+    <h2>إضافة وظيفة جديدة</h2>
+    <form id="addJobForm">
+      <input type="text" id="jobTitle" placeholder="عنوان الوظيفة" required />
+      <textarea id="jobDesc" placeholder="وصف الوظيفة" required></textarea>
+      <button type="submit">إضافة الوظيفة</button>
+    </form>
+  </section>
+
+  <section class="admin-section">
+    <h2>الطلبات المستلمة</h2>
+    <div id="applicationsList"></div>
+  </section>
+
+  <script src="app.js"></script>
 </body>
 </html>
