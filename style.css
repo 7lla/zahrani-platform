@@ -1,94 +1,51 @@
-/* الخط الأساسي */
 body {
   font-family: 'Cairo', sans-serif;
-  background-color: #f8faff;
-  color: #222;
+  background-color: #f4faff;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
-/* الهيدر */
 .header {
   background-color: #ffffff;
-  border-bottom: 3px solid #007bff;
-  padding: 10px 15px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
+  padding: 15px;
+  text-align: center;
+  border-bottom: 3px solid #007BFF;
 }
 
-.header .logo {
-  height: 70px;
-  object-fit: contain;
+.logo {
+  max-height: 80px;
 }
 
-/* الخلفية المائية للشعار */
-.brand-bg {
-  background-image: url("https://res.cloudinary.com/dysxdaa2u/image/upload/v1754813649/bsxB90Z-removebg-preview-removebg-preview_thsohf.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 200px;
-  opacity: 0.05;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: -1;
+h1, h2 {
+  color: #007BFF;
 }
 
-/* البطاقات */
-.card {
-  background-color: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #e0e6f1;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+.jobs-section, .form-section, .admin-login, .admin-section {
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.card h5 {
-  font-weight: 600;
-  color: #007bff;
+input, textarea, button {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
-/* الأزرار */
-.btn-primary {
-  background-color: #007bff;
+button {
+  background-color: #007BFF;
+  color: white;
   border: none;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.btn-primary:hover {
-  background-color: #0062d1;
+button:hover {
+  background-color: #0056b3;
 }
-
-.btn-outline-primary {
-  color: #007bff;
-  border-color: #007bff;
-}
-
-.btn-outline-primary:hover {
-  background-color: #007bff;
-  color: #fff;
-}
-
-/* المعاينة للصور */
-.img-preview {
-  max-width: 100%;
-  height: 120px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  padding: 3px;
-  background-color: #fff;
-}
-
-/* النصوص الثانوية */
-.text-muted {
-  font-size: 0.85rem;
-}
-
-/* الهواتف */
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    text-align: center;
-  }
-  .header .logo {
-    height: 60px;
-  }
-}
-
