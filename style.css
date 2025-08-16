@@ -1,51 +1,58 @@
 body {
   font-family: 'Cairo', sans-serif;
-  background-color: #f4faff;
-  color: #333;
+  background: #f4f6f9;
   margin: 0;
   padding: 0;
+  color: #333;
 }
 
 .header {
-  background-color: #ffffff;
-  padding: 15px;
+  background: #004080;
+  color: #fff;
   text-align: center;
-  border-bottom: 3px solid #007BFF;
+  padding: 1rem;
 }
 
-.logo {
-  max-height: 80px;
-}
-
-h1, h2 {
-  color: #007BFF;
-}
-
-.jobs-section, .form-section, .admin-login, .admin-section {
+.admin-section {
+  margin: 20px;
   padding: 20px;
-  margin: 20px auto;
-  max-width: 600px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-input, textarea, button {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 5px;
+.application-card {
+  background: #fdfdfd;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+}
+
+.application-card h3 {
+  margin-top: 0;
+  color: #004080;
+}
+
+.application-card p {
+  margin: 6px 0;
+}
+
+.images {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.images div {
+  flex: 1 1 30%;
+  text-align: center;
+}
+
+.images img {
+  max-width: 100%;
+  border-radius: 8px;
   border: 1px solid #ccc;
-}
-
-button {
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
 }
